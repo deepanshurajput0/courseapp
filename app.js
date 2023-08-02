@@ -6,6 +6,7 @@ import course from "./routes/courseRoutes.js"
 import user from "./routes/userRoutes.js"
 import payment from "./routes/paymentRoutes.js"
 import other from "./routes/otherRoutes.js"
+import cors from "cors"
 config({
     path:"./config/config.env" ,
 })
@@ -17,6 +18,9 @@ app.use(express.urlencoded({
 }))
 
 app.use(cookieParser())
+app.use(cors({
+    origin: process.env.FRONTEND_URL
+}))
 app.use("/api/v1", course )
 app.use("/api/v1", user )
 app.use("/api/v1",payment) 
